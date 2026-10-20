@@ -35,4 +35,4 @@ PC ではキーボード `1`〜`5` で操作、`Space` で一時停止。
 
 リポジトリの **Settings → Pages → Build and deployment** で
 Source を「Deploy from a branch」、Branch を `main` / `/ (root)` にして保存すると、
-`https://<ユーザー名>.github.io/multi_task/` で公開されます。
+`https://kyosuke0306.github.io/MULTI_TASK/` で公開されます。

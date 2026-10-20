@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1b1838">
+<title>段取りマスター</title>
+<meta name="description" content="家事を同時進行でこなすマルチタスクゲーム。待ち時間を使い倒して、段取りよくハイスコアを狙おう。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="hud">
+    <div class="hud-box">
+      <span class="lbl">SCORE</span>
+      <span class="val" id="score">0</span>
+    </div>
+    <div class="hud-box time" id="timeBox">
+      <span class="lbl">TIME</span>
+      <span class="val" id="time">90</span>
+    </div>
+    <div class="hud-box multi" id="multiBox">
+      <span class="lbl">MULTI</span>
+      <span class="pips" id="pips"><i></i><i></i><i></i><i></i></span>
+      <span class="val" id="mult">x1.0</span>
+    </div>
+    <div class="hud-box combo" id="comboBox">
+      <span class="lbl">COMBO</span>
+      <span class="val" id="combo">0</span>
+    </div>
+    <div class="hud-btns">
+      <button class="icon-btn" id="soundBtn" aria-label="サウンド切替"></button>
+      <button class="icon-btn" id="pauseBtn" aria-label="一時停止"></button>
+    </div>
+  </header>
+
+  <main class="board" id="board"></main>
+</div>
+
+<canvas id="fx"></canvas>
+<div id="popups"></div>
+<div id="banner"></div>
+<div id="countdown"></div>
+
+<section class="screen show" id="titleScreen">
+  <div class="panel title-panel">
+    <div class="logo" id="logo"></div>
+    <h1>段取りマスター</h1>
+    <p class="tagline">待ち時間を使い倒す<br>マルチタスク家事ゲーム</p>
+    <div class="best"><span class="best-ico" id="bestIco"></span>BEST <b id="bestScore">0</b></div>
+    <button class="btn primary big" id="startBtn">スタート</button>
+    <div class="row">
+      <button class="btn" id="howBtn">遊び方</button>
+      <button class="btn" id="recBtn">記録</button>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="howScreen">
+  <div class="panel how-panel">
+    <h2>遊び方</h2>
+    <ol class="rules">
+      <li><b>依頼が来たらタップで開始</b>ベルが鳴った機械をタップ。早く始めるほど <em>QUICK</em> ボーナス。</li>
+      <li><b>待ち時間に次の作業</b>同時に動いている機械が多いほど <em>MULTI</em> 倍率アップ(最大 x3)。3つ・4つ同時進行でボーナス。</li>
+      <li><b>終わったらすぐ回収</b>金色に光っている間にタップで <em>PERFECT</em>。放置すると失敗。</li>
+      <li><b>皿洗いで隙間を埋める</b>連打で洗う。7枚たまるとあふれて失敗。</li>
+    </ol>
+    <div class="how-grid" id="howGrid"></div>
+    <p class="hint pc-only">キーボード <kbd>1</kbd>〜<kbd>5</kbd> でも操作できます。<kbd>Space</kbd> で一時停止。</p>
+    <button class="btn primary" data-back>もどる</button>
+  </div>
+</section>
+
+<section class="screen" id="recScreen">
+  <div class="panel rec-panel">
+    <h2>記録</h2>
+    <ol class="records" id="recList"></ol>
+    <button class="btn primary" data-back>もどる</button>
+  </div>
+</section>
+
+<section class="screen" id="pauseScreen">
+  <div class="panel">
+    <h2>一時停止中</h2>
+    <button class="btn primary big" id="resumeBtn">再開</button>
+    <button class="btn" id="quitBtn">タイトルへ</button>
+  </div>
+</section>
+
+<section class="screen" id="resultScreen">
+  <div class="panel result-panel">
+    <div class="newrec" id="newRec">NEW RECORD!</div>
+    <div class="rank" id="rankBadge"></div>
+    <div class="final-score"><span id="finalScore">0</span><small>点</small></div>
+    <p class="comment" id="comment"></p>
+    <dl class="stats" id="stats"></dl>
+    <button class="btn primary big" id="retryBtn">もう一度</button>
+    <div class="row">
+      <button class="btn" id="toTitleBtn">タイトル</button>
+      <a class="btn" id="shareBtn" target="_blank" rel="noopener">結果をポスト</a>
+    </div>
+  </div>
+</section>
+
+<script src="game.js"></script>
+</body>
+</html>
